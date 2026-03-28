@@ -6,11 +6,10 @@ module Top(
     input [7:0] B_in,    
     input [2:0] opcode,      
 
-    output [7:0] result_out, 
+    output signed [7:0] result_out, 
     output carry,
     output zero_flag,
     output overflow_flag,
-    output div_by_zero,
     output done
 );
 
@@ -54,8 +53,7 @@ Alu alu_unit(
     .result(alu_result),
     .carry(carry),
     .zero_flag(zero_flag),
-    .overflow_flag(overflow_flag),
-    .div_by_zero(div_by_zero)
+    .overflow_flag(overflow_flag)
 );
 
 endmodule

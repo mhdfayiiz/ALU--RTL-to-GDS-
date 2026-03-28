@@ -62,7 +62,7 @@ done=1'b1;
 end
 LOAD:begin
 load_A=1'b1;
-load_B=1'b1;
+load_B=1'b1; 
 end
 EXECUTE:
 begin

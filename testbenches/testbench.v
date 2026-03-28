@@ -12,11 +12,10 @@ wire signed [7:0] result_out;
 wire carry;
 wire zero_flag;
 wire overflow_flag;
-wire div_by_zero;
 wire done;
 
 Top dut(
-.clk(clk),.reset(reset),.start(start),.A_in(A_in),.B_in(B_in),.opcode(opcode),.result_out(result_out),.carry(carry),.zero_flag(zero_flag),.overflow_flag(overflow_flag),.div_by_zero(div_by_zero),.done(done));
+.clk(clk),.reset(reset),.start(start),.A_in(A_in),.B_in(B_in),.opcode(opcode),.result_out(result_out),.carry(carry),.zero_flag(zero_flag),.overflow_flag(overflow_flag),.done(done));
 
 initial 
 begin
@@ -43,7 +42,7 @@ start = 1;
 #10 start = 0;
 wait(done);
 #2;
-$display("Time=%0dns | A=%0d | B=%0d | opcode=%b | result=%0d | carry=%b | zero=%b | overflow=%b | div0=%b | done=%b",$time, A_in, B_in, opcode, result_out, carry, zero_flag, overflow_flag, div_by_zero, done);
+$display("Time=%0dns | A=%0d | B=%0d | opcode=%b | result=%0d | carry=%b | zero=%b | overflow=%b | done=%b",$time, A_in, B_in, opcode, result_out, carry, zero_flag, overflow_flag, done);
  
 
 $display("\n  TEST 2: SUB ");
@@ -54,9 +53,9 @@ $display("\n  TEST 2: SUB ");
  #10 start = 0;
  wait(done);
  #2;
-$display("Time=%0dns | A=%0d | B=%0d | opcode=%b | result=%0d | carry=%b | zero=%b | overflow=%b | div0=%b | done=%b",$time, A_in, B_in, opcode, result_out, carry, zero_flag, overflow_flag, div_by_zero, done);
+$display("Time=%0dns | A=%0d | B=%0d | opcode=%b | result=%0d | carry=%b | zero=%b | overflow=%b | done=%b",$time, A_in, B_in, opcode, result_out, carry, zero_flag, overflow_flag, done);
 
-$display("\n   TEST 3: MUL  ");
+$display("\n   TEST 3: AND  ");
 A_in = 8'd7;
 B_in = 8'd6;
 opcode = 3'b010;
@@ -64,9 +63,9 @@ start = 1;
 #10 start = 0;
 wait(done);
 #2;
-$display("Time=%0dns | A=%0d | B=%0d | opcode=%b | result=%0d | carry=%b | zero=%b | overflow=%b | div0=%b | done=%b",$time, A_in, B_in, opcode, result_out, carry, zero_flag, overflow_flag, div_by_zero, done);
+$display("Time=%0dns | A=%0d | B=%0d | opcode=%b | result=%0d | carry=%b | zero=%b | overflow=%b | done=%b",$time, A_in, B_in, opcode, result_out, carry, zero_flag, overflow_flag, done);
 
-$display("\n   TEST 4: DIV  ");
+$display("\n   TEST 4: OR  ");
 A_in = 8'd50;
 B_in = 8'd10;
 opcode = 3'b011;
@@ -74,17 +73,8 @@ start = 1;
 #10 start = 0;
 wait(done);
 #2;
-$display("Time=%0dns | A=%0d | B=%0d | opcode=%b | result=%0d | carry=%b | zero=%b | overflow=%b | div0=%b | done=%b",$time, A_in, B_in, opcode, result_out, carry, zero_flag, overflow_flag, div_by_zero, done);
+$display("Time=%0dns | A=%0d | B=%0d | opcode=%b | result=%0d | carry=%b | zero=%b | overflow=%b | done=%b",$time, A_in, B_in, opcode, result_out, carry, zero_flag, overflow_flag, done);
 
-$display("\n  TEST 5: DIV BY ZERO ");
-A_in = 8'd100;
-B_in = 0;
-opcode = 3'b011; 
-start = 1;
-#10 start = 0;
-wait(done);
-#2;
-$display("Time=%0dns | A=%0d | B=%0d | opcode=%b | result=%0d | carry=%b | zero=%b | overflow=%b | div0=%b | done=%b",$time, A_in, B_in, opcode, result_out, carry, zero_flag, overflow_flag, div_by_zero, done);
 
 $display("\n ALL TESTS FINISHED \n");
 $finish;

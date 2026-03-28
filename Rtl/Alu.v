@@ -5,8 +5,7 @@ input [2:0]alu_opcode,
 output reg signed [7:0]result,
 output reg carry,
 output reg zero_flag,
-output reg overflow_flag,
-output reg div_by_zero );
+output reg overflow_flag );
 
 always @ (*)
 begin
@@ -14,7 +13,6 @@ result=8'b0;
 carry=1'b0;
 zero_flag=1'b0;
 overflow_flag=1'b0;
-div_by_zero =1'b0;
 
 case(alu_opcode)
 
@@ -35,23 +33,22 @@ end
 
 3'b010:
 begin
-result=A*B & 8'hFF;
-zero_flag=(result==0);
+result=A&B;
+zero_flag=(result==8'b0);
 end
 
 3'b011:
 begin
-if(B==8'b0)
-begin
-div_by_zero=1'b1;
-result=8'b0;
-end
-else
-begin
-result=A/B;
+result=A|B;
 zero_flag=(result==8'b0);
 end
 
+default:
+begin
+result = 8'b0;
+carry = 1'b0;
+zero_flag = 1'b0;
+overflow_flag = 1'b0;
 end
 
 endcase
