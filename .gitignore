@@ -1,0 +1,17 @@
+# Simulation output files
+*.vvp
+*.vcd
+
+# GTKWave save files
+*.gtkw
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*.out
+
+# OS files
+.DS_Store
+Thumbs.db
