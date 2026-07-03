@@ -138,4 +138,3 @@ iverilog -DFUNCTIONAL -DUNIT_DELAY="#1" \
 vvp gls.out && gtkwave synthesis/wave.vcd
 ```
 
-> **WSL2 note:** Keep all files on the WSL native filesystem (~/) rather than the Windows mount (/mnt/d/). The NTFS mount introduces CRLF line endings that silently break IVerilog's include parsing in ways that are annoying to diagnose.
