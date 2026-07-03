@@ -1,0 +1,13 @@
+read_verilog Rtl/TopModule.v Rtl/Alu.v Rtl/Control_unit.v Rtl/registermodule.v
+hierarchy -check -top Top
+proc
+flatten
+opt_expr
+opt_clean
+opt -full
+dfflibmap -liberty /home/fayiz/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+abc -liberty /home/fayiz/pdks/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+opt_clean
+stat
+check
+write_verilog synthesis/Top_netlist.v
